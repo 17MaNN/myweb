@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Lavee!</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1a1a1a;
+      color: #e38de3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      z-index: 10;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #e0d0e0;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .container {
+        max-width: 90%;
+        padding: 10px;
+      }
+    }
+    .heart {
+      position: absolute;
+      top: -20px;
+      width: 20px;
+      height: 20px;
+      background: #c8a2c8;
+      transform: rotate(45deg);
+      animation: floatDown linear;
+      opacity: 0.7;
+      z-index: 0;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #c8a2c8;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes floatDown {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.7;
+        filter: hue-rotate(0deg);
+      }
+      25% {
+        filter: hue-rotate(90deg);
+      }
+      50% {
+        filter: hue-rotate(180deg);
+      }
+      75% {
+        filter: hue-rotate(270deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+        filter: hue-rotate(360deg);
+      }
+    }
+    .polaroid {
+      position: absolute;
+      width: 120px;
+      height: 140px;
+      background: white;
+      padding: 10px 10px 30px 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transform-origin: center center;
+      animation: tipsy 4s ease-in-out infinite;
+      z-index: 1;
+    }
+    @media (max-width: 768px) {
+      .polaroid {
+        width: 80px;
+        height: 95px;
+        padding: 8px 8px 20px 8px;
+      }
+      .polaroid-image {
+        height: 50px;
+      }
+      .polaroid-text {
+        font-size: 8px;
+        margin-top: 5px;
+      }
+    }
+    .polaroid-image {
+      width: 100%;
+      height: 80px;
+      background: #f5f5f5;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .polaroid-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .polaroid-text {
+      text-align: center;
+      font-size: 10px;
+      color: #666;
+      margin-top: 8px;
+      font-family: 'Courier New', monospace;
+    }
+    @keyframes tipsy {
+      0%, 100% { 
+        transform: rotate(-5deg) translateY(0px);
+      }
+      25% { 
+        transform: rotate(3deg) translateY(-10px);
+      }
+      50% { 
+        transform: rotate(-2deg) translateY(5px);
+      }
+      75% { 
+        transform: rotate(4deg) translateY(-8px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy Birthday Lavee!</h1>
+    <p>Wishing you many, many, many, many good memories this year and beyond.</p>
+    <p>Thank you for always being kind and a true friend — for being there when I was at my lowest, for always helping me, and for being the beautiful soul you are.</p>
+    <p>You always got me, and I'll always be here for you, no matter what. I'll help you in every way I can, always.</p>
+  </div>
+  <script>
+    // Array of image URLs - replace these with your actual image URLs
+    const imageUrls = [
+      'IMG_20250523_005219.jpg',
+      'IMG_20250523_014147.jpg',
+      'IMG_20250523_014321.jpg',
+      'IMG_20250523_005219.jpg'
+    ];
+    
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+      document.body.appendChild(heart);
+      setTimeout(() => document.body.removeChild(heart), 5000);
+    }
+    
+    function createPolaroid(imgUrl) {
+      const polaroid = document.createElement("div");
+      polaroid.className = "polaroid";
+      
+      const image = document.createElement("div");
+      image.className = "polaroid-image";
+      
+      // Create img element instead of using the camera icon
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      img.alt = "Birthday memory";
+      
+      image.appendChild(img);
+      
+      const text = document.createElement("div");
+      text.className = "polaroid-text";
+      text.textContent = "HBD Lavee";
+      
+      polaroid.appendChild(image);
+      polaroid.appendChild(text);
+      
+      // Random rotation and animation delay
+      polaroid.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+      polaroid.style.animationDelay = `${Math.random() * 4}s`;
+      polaroid.style.animationDuration = `${3 + Math.random() * 2}s`;
+      
+      document.body.appendChild(polaroid);
+      
+      return polaroid;
+    }
+    
+    // Create polaroids at 4 corners
+    function createCornerPolaroids() {
+      const corners = [
+        { left: '5%', top: '5%' },      // top-left
+        { right: '5%', top: '5%' },     // top-right
+        { left: '5%', bottom: '5%' },   // bottom-left
+        { right: '5%', bottom: '5%' }   // bottom-right
+      ];
+      
+      corners.forEach((corner, index) => {
+        setTimeout(() => {
+          const polaroid = createPolaroid(imageUrls[index % imageUrls.length]);
+          Object.keys(corner).forEach(key => {
+            polaroid.style[key] = corner[key];
+          });
+        }, index * 800);
+      });
+    }
+    
+    createCornerPolaroids();
+    
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
