@@ -4,12 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Lavee!</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       background-color: #1a1a1a;
       color: #e38de3;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Quicksand', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,20 +28,21 @@
       z-index: 10;
     }
     h1 {
-      font-size: 3rem;
+      font-family: 'Wonderia';
+      font-size: 6.2rem;
       margin-bottom: 20px;
     }
     p {
       color: #e0d0e0;
-      font-size: 1.2rem;
+      font-size: 2rem;
       margin-bottom: 15px;
     }
     @media (max-width: 768px) {
       h1 {
-        font-size: 2.2rem;
+        font-size: 3.5rem;
       }
       p {
-        font-size: 1rem;
+        font-size: 2rem;
       }
       .container {
         max-width: 90%;
@@ -158,20 +164,19 @@
 </head>
 <body>
   <div class="container">
-    <h1>Happy Birthday Lavee!</h1>
+    <h1>Happy Birthday Lavee!!!!</h1>
     <p>Wishing you many, many, many, many good memories this year and beyond.</p>
     <p>Thank you for always being kind and a true friend — for being there when I was at my lowest, for always helping me, and for being the beautiful soul you are.</p>
     <p>You always got me, and I'll always be here for you, no matter what. I'll help you in every way I can, always.</p>
   </div>
   <script>
-    // Array of image URLs - replace these with your actual image URLs
     const imageUrls = [
       'IMG_20250523_005219.jpg',
       'IMG_20250523_014147.jpg',
       'IMG_20250523_014321.jpg',
       'IMG_20250523_005219.jpg'
     ];
-    
+
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -180,47 +185,43 @@
       document.body.appendChild(heart);
       setTimeout(() => document.body.removeChild(heart), 5000);
     }
-    
+
     function createPolaroid(imgUrl) {
       const polaroid = document.createElement("div");
       polaroid.className = "polaroid";
-      
+
       const image = document.createElement("div");
       image.className = "polaroid-image";
-      
-      // Create img element instead of using the camera icon
+
       const img = document.createElement("img");
       img.src = imgUrl;
       img.alt = "Birthday memory";
-      
+
       image.appendChild(img);
-      
+
       const text = document.createElement("div");
       text.className = "polaroid-text";
       text.textContent = "HBD Lavee";
-      
+
       polaroid.appendChild(image);
       polaroid.appendChild(text);
-      
-      // Random rotation and animation delay
+
       polaroid.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
       polaroid.style.animationDelay = `${Math.random() * 4}s`;
       polaroid.style.animationDuration = `${3 + Math.random() * 2}s`;
-      
+
       document.body.appendChild(polaroid);
-      
       return polaroid;
     }
-    
-    // Create polaroids at 4 corners
+
     function createCornerPolaroids() {
       const corners = [
-        { left: '5%', top: '5%' },      // top-left
-        { right: '5%', top: '5%' },     // top-right
-        { left: '5%', bottom: '5%' },   // bottom-left
-        { right: '5%', bottom: '5%' }   // bottom-right
+        { left: '5%', top: '5%' },
+        { right: '5%', top: '5%' },
+        { left: '5%', bottom: '5%' },
+        { right: '5%', bottom: '5%' }
       ];
-      
+
       corners.forEach((corner, index) => {
         setTimeout(() => {
           const polaroid = createPolaroid(imageUrls[index % imageUrls.length]);
@@ -230,9 +231,8 @@
         }, index * 800);
       });
     }
-    
+
     createCornerPolaroids();
-    
     setInterval(createHeart, 300);
   </script>
 </body>
